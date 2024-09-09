@@ -231,28 +231,27 @@ INSERT INTO orders (user_id, food_id, amount, discount_code, arr_sub_id) VALUES
 
 
 
--- September 8, 2024 14:01:25
 select count(*), users.full_name as count_like from like_res
 left join users on like_res.user_id = users.id
 group by users.id
 order by users.id
 limit 5
 
--- September 8, 2024 14:03:43
+
 select restaurants.res_name, count(*) as count_like from like_res
 left join restaurants on like_res.res_id = restaurants.id
 group by restaurants.id
 order by restaurants.id
 limit 2
 
--- September 8, 2024 14:36:15
+
 select users.full_name, count(*) as count_order from orders
 left join users on orders.user_id = users.id
 group by users.id
 order by users.id
 limit 1
 
--- September 8, 2024 14:13:46
+
 select users.full_name, like_res.id as like_id, rate_res.id as rate_id, orders.id as order_id from users
 left join like_res on users.id = like_res.user_id
 left join rate_res on users.id = rate_res.user_id
