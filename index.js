@@ -1,5 +1,8 @@
 // B1: import express
 import express from "express";
+// import pool from "./db.js";
+// import {OK, INTERNAL_SERVER} from "./const.js"
+import rootRoutes from "./src/routes/root.router.js";
 
 // B2: create object express
 const app = express();
@@ -7,11 +10,14 @@ const app = express();
 // them middleware der doc data json
 app.use(express.json());
 
+// import rootRoutes
+app.use(rootRoutes)
+
 // B3: define port cho BE chay
 // params 1: define port BE
 // params 2: callback function
 
-app.get(`/`, (req, res, next) => {
+app.get(`/`, (req, res) => {
     res.send("Hello node44");
 
 })
@@ -20,23 +26,9 @@ app.get('/test',(req, res) => {
     res.send("test api");
 })
 
-// demo get params tu URL
-app.post('/users/:id/:hoTen',(req, res) => {
-    let params = req.params;
-    let {id,hoTen} = params;
-    let body = req.body;
-
-    console.log('12334');
-    
-    res.send({
-        id,
-        hoTen,
-        body
-    });
-});
 
 // demo get query tu URL
-app.get(`/test-query`, (req, res, next) => {
+app.get(`/test-query`, (req, res) => {
 
     let query = req.query;
     res.send(query);
@@ -45,7 +37,7 @@ app.get(`/test-query`, (req, res, next) => {
 })
 
 // demo get header from request
-app.get(`/test-header`, (req, res, next) => {
+app.get(`/test-header`, (req, res) => {
 
     let headers = req.headers;
     res.send(headers);
@@ -54,7 +46,8 @@ app.get(`/test-header`, (req, res, next) => {
 })
 
 
-app.listen(8080, () => {
-    console.log("Server is starting with port 8080");
+
+app.listen(8085, () => {
+    console.log("Server is starting with port 8085");
 })
 
