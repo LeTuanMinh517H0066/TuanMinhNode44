@@ -3,12 +3,16 @@ import express from "express";
 // import pool from "./db.js";
 // import {OK, INTERNAL_SERVER} from "./const.js"
 import rootRoutes from "./src/routes/root.router.js";
+import cors from "cors";
 
 // B2: create object express
 const app = express();
 
 // them middleware der doc data json
 app.use(express.json());
+
+// them middleware cors để frontend có thể call api tới backend
+app.use(cors());
 
 // import rootRoutes
 app.use(rootRoutes)

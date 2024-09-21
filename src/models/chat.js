@@ -1,7 +1,7 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class like_res extends Model {
+export default class chat extends Model {
   static init(sequelize, DataTypes) {
   return super.init({
     id: {
@@ -12,27 +12,23 @@ export default class like_res extends Model {
     },
     user_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'users',
-        key: 'id'
-      }
+      allowNull: true
     },
-    res_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'restaurants',
-        key: 'id'
-      }
+    content: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     },
-    date_like: {
+    room_id: {
+      type: DataTypes.STRING(50),
+      allowNull: true
+    },
+    date: {
       type: DataTypes.DATE,
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'like_res',
+    tableName: 'chat',
     timestamps: false,
     indexes: [
       {
@@ -41,20 +37,6 @@ export default class like_res extends Model {
         using: "BTREE",
         fields: [
           { name: "id" },
-        ]
-      },
-      {
-        name: "user_id",
-        using: "BTREE",
-        fields: [
-          { name: "user_id" },
-        ]
-      },
-      {
-        name: "res_id",
-        using: "BTREE",
-        fields: [
-          { name: "res_id" },
         ]
       },
     ]

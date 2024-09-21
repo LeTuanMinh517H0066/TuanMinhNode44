@@ -4,23 +4,44 @@ const { Model, Sequelize } = _sequelize;
 export default class users extends Model {
   static init(sequelize, DataTypes) {
   return super.init({
-    id: {
+    user_id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
     full_name: {
-      type: DataTypes.STRING(50),
-      allowNull: false
+      type: DataTypes.STRING(255),
+      allowNull: true
     },
     email: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: true,
+      unique: "email"
+    },
+    avatar: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     },
     pass_word: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: true
+    },
+    face_app_id: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    role_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'role',
+        key: 'role_id'
+      }
+    },
+    refresh_token: {
+      type: DataTypes.TEXT,
+      allowNull: true
     }
   }, {
     sequelize,
@@ -32,7 +53,22 @@ export default class users extends Model {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "id" },
+          { name: "user_id" },
+        ]
+      },
+      {
+        name: "email",
+        unique: true,
+        using: "BTREE",
+        fields: [
+          { name: "email" },
+        ]
+      },
+      {
+        name: "role_id",
+        using: "BTREE",
+        fields: [
+          { name: "role_id" },
         ]
       },
     ]

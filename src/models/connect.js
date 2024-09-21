@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 
 const sequelize = new Sequelize(
-    'node44',
+    'node44_youtube',
     'root',
     '123456',
     {
