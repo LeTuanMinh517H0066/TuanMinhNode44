@@ -13,6 +13,7 @@ const getListVideo = async(req, res) => {
         return res.status(OK).json(data);
         
     } catch (error) {
+        console.log(error);
         return res.status(INTERNAL_SERVER).json({message:"error"});
     }
 }
