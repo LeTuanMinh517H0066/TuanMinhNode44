@@ -1,38 +1,26 @@
 import _sequelize from 'sequelize';
 const { Model, Sequelize } = _sequelize;
 
-export default class code extends Model {
+export default class food_type extends Model {
   static init(sequelize, DataTypes) {
   return super.init({
     id: {
       autoIncrement: true,
-      type: DataTypes.BIGINT.UNSIGNED,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    code: {
-      type: DataTypes.STRING(50),
-      allowNull: true
-    },
-    expired: {
-      type: DataTypes.DATE,
-      allowNull: true
+    type_name: {
+      type: DataTypes.STRING(255),
+      allowNull: false
     }
   }, {
     sequelize,
-    tableName: 'code',
+    tableName: 'food_type',
     timestamps: false,
     indexes: [
       {
         name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-      {
-        name: "id",
         unique: true,
         using: "BTREE",
         fields: [
